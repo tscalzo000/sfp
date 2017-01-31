@@ -18,5 +18,4 @@ class GamesController < ApplicationController
   def update; end
 
   def delete; end
-
 end
