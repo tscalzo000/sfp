@@ -6,8 +6,8 @@ describe UsersController, type: :controller do
   it "renders the show view" do
     user = FactoryGirl.create(:user)
     sign_in user
-    get :show, id: user.id
-    assigns(:user).should eq(user)
+    get :show, params: { id: user.id }
+    expect(assigns(:user)).to eq(user)
     expect(response).to render_template :show
   end
 end

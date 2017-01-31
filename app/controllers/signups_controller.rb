@@ -1,13 +1,9 @@
 class SignupsController < ApplicationController
-  def index
-  end
-  
-  def new
-  end
+  def index; end
 
-  def create
-  end
+  def new; end
 
-  def delete
-  end
+  def create; end
+
+  def delete; end
 end
