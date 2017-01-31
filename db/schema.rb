@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170130230338) do
     t.string   "description", default: "", null: false
     t.integer  "playernum",                null: false
     t.integer  "dm_id",                    null: false
-    t.string   "type",        default: "", null: false
+    t.string   "gametype",    default: "", null: false
     t.string   "location",    default: "", null: false
     t.string   "time",                     null: false
     t.string   "day",                      null: false

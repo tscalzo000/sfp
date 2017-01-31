@@ -5,7 +5,7 @@ class CreateGames < ActiveRecord::Migration[5.0]
       t.string :description, null: false, default: ''
       t.integer :playernum, null: false
       t.integer :dm_id, null: false
-      t.string :type, null: false, default: ''
+      t.string :gametype, null: false, default: ''
       t.string :location, null: false, default: ''
       t.string :time, null: false
       t.string :day, null: false
