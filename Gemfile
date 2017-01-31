@@ -8,6 +8,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'dotenv'
 gem 'devise'
+gem 'foundation-rails'
 
 group :test do
   gem 'coveralls', require: false
