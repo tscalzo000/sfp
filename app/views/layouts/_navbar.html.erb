@@ -1,0 +1,31 @@
+<div class='title-bar' data-responsive-toggle='example-menu' data-hide-for='medium'>
+  <button class='menu-icon' type='button' data-toggle='example-menu'></button>
+  <div class='title-bar-title'>Menu</div>
+</div>
+
+<div data-sticky-container>
+  <div class='title-bar' data-sticky data-options='marginTop:0;' style='width:100%'>
+    <div class='top-bar' id='example-menu'>
+      <div class='top-bar-left'>
+        <ul class='dropdown menu' data-dropdown-menu>
+          <li class='menu-text'>S-F-P</li>
+          <li><a href='/'>Home</a></li>
+          <li><a href='#'>Two</a></li>
+          <li><a href='#'>Three</a></li>
+        </ul>
+      </div>
+      <div class='top-bar-right'>
+        <ul class='menu'>
+          <% if user_signed_in? %>
+            <li><a href='/users/<%= current_user.id %>'>Logged in as <strong><%= current_user.username %></strong></a></li>
+            <li><a href='/users/edit'>Edit profile</a></li>
+            <li><a href='/users/sign_out' data-method='delete'>Logout</a></li>
+          <% else %>
+            <li><a href='/users/sign_up'>Sign up</a></li>
+            <li><a href='/users/sign_in'>Login</a></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

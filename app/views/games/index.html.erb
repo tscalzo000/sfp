@@ -1,0 +1,7 @@
+<% @games.each do |game| %>
+  <p><%= game.name %></p>
+<% end %>
+
+<div class='large-4 medium-6 small-8 large-offset-4 medium-offset-3 small-offset-2 columns'>
+  <%= button_to 'Add a Game Listing', new_game_path, id: 'button'  %>
+</div>
