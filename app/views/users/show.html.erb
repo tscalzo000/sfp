@@ -5,7 +5,7 @@
     <% @user.signups.each do |signup| %>
       <p>
         <%= link_to signup.game.name, game_path(signup.game) %>
-          <% if signup.game.dm_id = @user.id %>
+          <% if signup.game.dm_id == @user.id %>
             (DM)
           <% end %>
       </p>
