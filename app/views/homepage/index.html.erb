@@ -1,5 +1,7 @@
 <div id='homepage'>
   Ready to Play?
-  <br />
-  <a href='/games'><button>Find a Game >>></button></a>
+
+  <div id='findgames'>
+    <%= link_to 'Find Games >>>', games_path, id: 'button' %>
+  </div>
 </div>
