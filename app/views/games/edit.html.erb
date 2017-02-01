@@ -1,3 +1,8 @@
-<h1>Edit Game Listing</h1>
+<div id='background'>
+  <h1>Edit Game Listing</h1>
 
-  <%= render 'form' %>
+    <%= render 'form' %>
+
+  <%= button_to 'Delete Game', game_path(@game), method: :delete, data: { confirm: "Are you sure? All resources for this game will be deletThis action cannot be undone." } %>
+  <%= link_to 'Cancel', game_path %>
+</div>

@@ -1,3 +1,51 @@
 <%= form_for @game do |f| %>
 
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div>
+    <%= f.label :playernum, value: 'How many players?' %>
+    <%= f.number_field :playernum, default_value: 'Please use whole numbers' %>
+  </div>
+
+  <%= f.hidden_field :dm_id, value: current_user.id %>
+
+  <div>
+    <%= f.label :gametype, value: 'What game and edition are you playing?' %>
+    <%= f.text_field :gametype %>
+  </div>
+
+  <div>
+    <%= f.label :location, value: 'Please supply a valid address.' %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div>
+    <%= f.label :time %>
+    <%= f.time_field :time %>
+  </div>
+
+  <div>
+    <%= f.label :day, value: 'Day of the Week' %>
+    <%= f.select :day, (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']) %>
+  </div>
+
+  <div>
+    <%= f.label :frequency, value: 'How often do you play?', name: 'frequency' %>
+    <%= f.select :frequency, [['Weekly','Weekly'], ['Every 2 Weeks', 'Every 2 Weeks'], ['Monthly', 'Monthly'], ['Other','Other']], {}, {onchange: "showfield(this.options[this.selectedIndex].value)"} %>
+  </div>
+
+  <div id="div1">
+    <%= f.label :other %>
+    <%= f.text_field :other %>
+  </div>
+
+  <%= f.submit %>
 <% end %>

@@ -12,4 +12,6 @@ class Game < ApplicationRecord
   validates :frequency, presence: true
   has_many :signups
   has_many :users, through: :signups
+  has_many :comments
+  has_many :requests
 end

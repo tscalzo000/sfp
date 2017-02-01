@@ -1,7 +1,25 @@
-<% @games.each do |game| %>
-  <p><%= game.name %></p>
-<% end %>
+<div id='background' class='large-offset-1 columns medium-offset-1 columns small-offset-1 columns large-10 columns medium-10 columns small-10 columns'>
+  <% @games.each do |game| %>
+    <p>
+      <u><%= link_to game.name, game_path(game) %></u>:
+      <% if game.description.length > 125 %>
+        <%= game.description[0...125] %>...(click the game name to see more)
+      <% else %>
+        <%= game.description %>
+      <% end %>
+      <br />What: <%= game.gametype %>
+      <br />Where: <%= game.location %> // When: <%= game.frequency %>, <%= game.day %>s at <%= game.time %>
+      // Players: <%= game.playernum %>
+      <hr />
+    </p>
+  <% end %>
+  <div class='text-center' id='out'>
+    Oops, all out of games!
+  </div>
+</div>
 
-<div class='large-4 medium-6 small-8 large-offset-4 medium-offset-3 small-offset-2 columns'>
-  <%= button_to 'Add a Game Listing', new_game_path, id: 'button'  %>
+<div class='small-12 columns medium-12 columns large-12 columns' id='newgame'>
+  <div class='large-4 medium-6 small-8 large-offset-4 medium-offset-3 small-offset-2 columns'>
+    <%= button_to 'Add a Game Listing', new_game_path, method: :get, id: 'button'  %>
+  </div>
 </div>

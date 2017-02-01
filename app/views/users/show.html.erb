@@ -1,1 +1,20 @@
-<%= @user.username %>
+<div id='background'>
+  <h1><%= @user.username %></h1>
+
+  <h2>Games:</h2>
+    <% @user.signups.each do |signup| %>
+      <p>
+        <%= link_to signup.game.name, game_path(signup.game) %>
+          <% if signup.game.dm_id = @user.id %>
+            (DM)
+          <% end %>
+      </p>
+    <% end %>
+
+  <h2>Requests:</h2>
+    <% @user.requests.each do |request| %>
+      <p><%= link_to request.game.name, game_path(request.game) %></p>
+    <% end %>
+
+  <h2>Resources:</h2>
+</div>

@@ -29,6 +29,7 @@ body {
   -o-background-size: cover;
   background-size: cover;
   font-family: 'Lobster', cursive;
+
 }
 
 #universal {
@@ -37,13 +38,13 @@ body {
 
 #flash {
   text-align: center;
-  background-color: rgba(255, 0, 0, 0.5);
+  background-color: rgba(143, 0, 255, 0.5);
   padding-bottom: 0;
   margin-bottom: 0;
 }
 
 #background {
-  background-color: rgba(255, 255, 255, 0.70);
+  background-color: rgba(255, 255, 255, .9);
   padding: 2%;
 }
 
@@ -56,7 +57,7 @@ a {
 }
 
 #homepage {
-  font-size: 3.5vw;
+  font-size: 30px;
   text-align: center;
   font-family: 'Merienda', cursive;
   background: rgba(255, 255, 255, 0.68);
@@ -68,10 +69,8 @@ a {
 }
 
 button, #button {
-  margin-top: 3%;
-  margin-left: 10%;
-  margin-right: 5%;
-  font-size: 2vw;
+  margin: 0;
+  font-size: 20px;
   background: #ececec;
 	border-radius: 15px;
 	padding: 3% 2%;
@@ -82,7 +81,7 @@ button, #button {
 	text-decoration: none;
 	text-shadow:0px 1px 0px #fff;
 	border:1px solid #a7a7a7;
-	width: 80%;
+	width: 100%;
 	box-shadow: 0px 2px 1px white inset, 0px -2px 8px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
 	-webkit-transition: box-shadow 0.5s;
 }
@@ -94,4 +93,36 @@ button:active, #button:active {
 
 h1, h2, h3 {
   font-family: 'Lobster', cursive;
+}
+
+.column, .columns {
+  padding: 0;
+}
+
+#findgames {
+  margin: 2% 10% 0% 10%;
+}
+
+#newgame {
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+hr {
+  border-color: #000000;
+  width: 90%;
+}
+
+#out {
+  border-top-style: dotted;
+  border-bottom-style: dotted;
+  margin-left: 33%;
+  margin-right: 33%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+}
+
+#gamepage {
+  font-family: serif;
+  font-size: 16px;
 }

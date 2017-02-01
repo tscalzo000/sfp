@@ -1,0 +1,11 @@
+<%= form_for [@game, @comment] do |f| %>
+
+  <div>
+    <%= f.label :body, value: 'Leave a comment:' %>
+    <%= f.text_field :body %>
+  </div>
+
+  <div class='small-3 columns float-left'>
+    <%= f.submit id: 'button' %>
+  </div>
+<% end %>
