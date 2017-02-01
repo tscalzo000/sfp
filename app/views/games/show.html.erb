@@ -80,8 +80,8 @@
   </div>
 </div>
 
-<% if current_user.id == @game.dm_id %>
-  <div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
+<div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
+  <% if current_user.id == @game.dm_id %>
     <h3>Requests:</h3>
     <p>
       <% @game.requests.each do |request| %>
@@ -94,39 +94,33 @@
         <% end %>
       <% end %>
     </p>
-  </div>
-<% end %>
+  <% end %>
 
-<% if current_user.id == @game.dm_id %>
-  <div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
+  <% if current_user.id == @game.dm_id %>
     <h3>Add Player to Game Manually:</h3>
       <%= form_for [@game, @signup] do |f| %>
       <%= f.label :user, value: 'Username of Player:' %>
       <%= f.text_field :user %>
       <%= f.submit(value='Add Player') %>
       <% end %>
-  </div>
-<% end %>
+  <% end %>
 
-<% if current_user.id == @game.dm_id %>
-  <div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
+  <% if current_user.id == @game.dm_id %>
     <h3>Change DM:</h3>
       <%= form_for [@game] do |f| %>
       <%= f.label :dm_id, value: 'ID of Player:' %>
       <%= f.text_field :dm_id %>
       <%= f.submit(value='Transfer DM Privileges') %>
       <% end %>
-  </div>
-<% end %>
+  <% end %>
 
-<div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
   <h3>Your Games:</h3>
     <% if current_user.signups == [] %>
       You have no games!
     <% end %>
     <% current_user.signups.each do |signup| %>
       <p>
-        <%= link_to signup.game.name, game_path(signup.game) %>: Role - 
+        <%= link_to signup.game.name, game_path(signup.game) %>: Role -
         <% if signup.game.dm_id == current_user.id %>
           DM
         <% else %>
