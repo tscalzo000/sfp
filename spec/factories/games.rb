@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :game do
-    sequence(:name) { |n| 'testgame#{n}' }
+    sequence(:name) { |n| "testgame#{n}" }
     description 'This is a description'
     playernum 6
     dm_id 1

@@ -10,7 +10,7 @@ function showfield(value){
 
 function hidefield() {
   document.getElementById('div1').style.display='none';
-  if (document.getElementById('writecomment') != null) {
-    document.getElementById('writecomment').style.display='block'
-  };
+  if (document.getElementById('writecomment') !== null) {
+    document.getElementById('writecomment').style.display='block';
+  }
 }

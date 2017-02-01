@@ -1,5 +1,4 @@
 class SignupsController < ApplicationController
-
   def new
     @signup = Signup.new
   end
@@ -17,7 +16,8 @@ class SignupsController < ApplicationController
       flash[:notice] = "#{@signup.user.username} has been added to #{@signup.game.name}"
       redirect_to game_path(@game)
     else
-      flash[:notice] = 'Error. Please make sure the username is spelled correctly, including capitalization'
+      flash[:notice] = 'Error. Please make sure the username is spelled correctly,'
+      flash[:notice] += ' including capitalization'
       redirect_back(fallback_location: root_path)
     end
   end
