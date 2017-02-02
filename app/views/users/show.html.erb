@@ -1,5 +1,5 @@
-<div id='background'>
-  <h1><%= @user.username %></h1>
+<div id='background' class='small-12 columns medium-8 columns float-left'>
+  <h1><%= @user.username %>'s Profile Page:</h1>
 
   <h2>Games:</h2>
     <% @user.signups.each do |signup| %>
@@ -10,11 +10,20 @@
           <% end %>
       </p>
     <% end %>
+    <hr />
 
   <h2>Requests:</h2>
     <% @user.requests.each do |request| %>
-      <p><%= link_to request.game.name, game_path(request.game) %></p>
+      <p>
+        <div class='small-2 columns'><%= link_to request.game.name, game_path(request.game) %></div>
+        <%= button_to 'Cancel Request', game_request_path(request.game, request), method: :delete, id: 'special' %>
+      </p>
     <% end %>
+    <hr />
 
   <h2>Resources:</h2>
+    <h3>Notes:</h3>
+      <% @user.notes.order(game_id: :asc).each do |note| %>
+        <p><%= note.game.name %> - <%= link_to note.title, edit_user_note_path(note) %></p>
+      <% end %>
 </div>

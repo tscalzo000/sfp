@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :games, through: :signups
   has_many :requests
   has_many :comments
+  has_many :notes
 end
