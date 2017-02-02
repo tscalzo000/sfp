@@ -15,11 +15,10 @@ class NotesController < ApplicationController
 
     if @note.save
       flash[:notice] = 'Note saved'
-      redirect_to game_path(@game)
     else
       flash[:notice] = 'Error'
-      redirect_to game_path(@game)
     end
+    redirect_to game_path(@game)
   end
 
   def edit
@@ -33,11 +32,10 @@ class NotesController < ApplicationController
 
     if @note.save
       flash[:notice] = 'Note saved'
-      redirect_to game_path(@game)
     else
       flash[:notice] = 'Error'
-      redirect_to game_path(@game)
     end
+    redirect_to game_path(@game)
   end
 
   private
