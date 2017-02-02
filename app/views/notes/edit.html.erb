@@ -1,0 +1,14 @@
+<div id='background'>
+  <h1>Edit Note:</h1>
+  <h3>Title: <%= @note.title %></h3>
+  <%= form_for [current_user, @note] do |f| %>
+
+    <div>
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 20 %>
+    </div>
+
+    <%= f.submit id: 'special' %>
+
+  <% end %>
+</div>

@@ -7,7 +7,10 @@ Rails.application.routes.draw do
     resources :signups, only: [:create, :destroy]
     resources :requests, only: [:create, :destroy]
     resources :comments, only: [:create]
+
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :notes, except: [:index]
+  end
 end

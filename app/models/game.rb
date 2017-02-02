@@ -14,4 +14,5 @@ class Game < ApplicationRecord
   has_many :users, through: :signups
   has_many :comments
   has_many :requests
+  has_many :notes
 end

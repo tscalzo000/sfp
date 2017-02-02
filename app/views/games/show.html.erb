@@ -31,7 +31,7 @@
       <% else %>
         <%= @game.frequency %>,
       <% end %>
-      <%= @game.day %>s at <%= @game.time %> at <%= @game.location %></p>
+      <%= @game.day %>s at <%= DateTime.parse(@game.time).strftime("%l:%M%p") %> at <%= @game.location %></p>
     <p>Description: <%= @game.description %></p>
     <p>Game run by: <%= User.find(@game.dm_id).username %></p>
     <p>Player Total: <%= @game.playernum %></p>
@@ -90,28 +90,34 @@
         <br /><%= request.body %>
         <%= form_for [@game, @signup] do |f| %>
           <%= f.hidden_field :user_id, value: request.user.id %>
-          <%= f.submit(value="Add Player") %>
+          <%= f.submit(value="Add Player", id: 'special') %>
         <% end %>
       <% end %>
     </p>
   <% end %>
 
   <% if current_user.id == @game.dm_id %>
+  <hr />
     <h3>Add Player to Game Manually:</h3>
       <%= form_for [@game, @signup] do |f| %>
       <%= f.label :user, value: 'Username of Player:' %>
       <%= f.text_field :user %>
-      <%= f.submit(value='Add Player') %>
+      <%= f.submit(value='Add Player', id: 'special') %>
       <% end %>
   <% end %>
 
   <% if current_user.id == @game.dm_id %>
+  <hr />
     <h3>Change DM:</h3>
       <%= form_for [@game] do |f| %>
       <%= f.label :dm_id, value: 'ID of Player:' %>
       <%= f.text_field :dm_id %>
-      <%= f.submit(value='Transfer DM Privileges') %>
+      <%= f.submit(value='Transfer DM Privileges', id: 'special') %>
       <% end %>
+  <% end %>
+
+  <% if current_user.id == @game.dm_id %>
+  <hr />
   <% end %>
 
   <h3>Your Games:</h3>
@@ -128,4 +134,10 @@
         <% end %>
       </p>
     <% end %>
+    <hr />
+  <h3>Your Notes:</h3>
+    <% current_user.notes.where(game: @game).each do |note| %>
+      <p><%= link_to note.title, edit_user_note_path(current_user, note)  %> - Last updated: <%= time_ago_in_words(note.updated_at) %> ago</p>
+    <% end %>
+    <%= button_to 'Create New Note', new_user_note_path(current_user, @note), method: :get, id: 'special' %>
 </div>

@@ -3,6 +3,6 @@
 
     <%= render 'form' %>
 
-  <%= button_to 'Delete Game', game_path(@game), method: :delete, data: { confirm: "Are you sure? All resources for this game will be deletThis action cannot be undone." } %>
+  <%= button_to 'Delete Game', game_path(@game), method: :delete, data: { confirm: "Are you sure? All resources for this game will be deletThis action cannot be undone." }, id: 'special' %>
   <%= link_to 'Cancel', game_path %>
 </div>

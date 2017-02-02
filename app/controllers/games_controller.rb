@@ -8,6 +8,7 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
     @request = Request.new
     @signup = Signup.new
+    @note = Note.new
   end
 
   def new

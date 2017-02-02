@@ -8,7 +8,7 @@
         <%= game.description %>
       <% end %>
       <br />What: <%= game.gametype %>
-      <br />Where: <%= game.location %> // When: <%= game.frequency %>, <%= game.day %>s at <%= game.time %>
+      <br />Where: <%= game.location %> // When: <%= game.frequency %>, <%= game.day %>s at <%= DateTime.parse(game.time).strftime("%l:%M%p") %>
       // Players: <%= game.playernum %>
       <hr />
     </p>
