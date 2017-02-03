@@ -1,4 +1,43 @@
-<div id='homepage'>
+<style type="text/css">
+  .top-bar, .top_bar ul, .title-bar, #title {
+    background-color: black !important;
+  }
+  a, .menu-text {
+    color: #1779ba !important;
+  }
+  #universal {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  body {
+    background: black;
+  }
+  .orbit-container {
+    height: 43vw !important;
+  }
+</style>
+
+<div class="orbit" role="region" aria-label="Favorite Space Pictures" data-orbit>
+  <ul class="orbit-container">
+    <button class="orbit-previous"><span class="show-for-sr">Previous Slide</span>&#9664;&#xFE0E;</button>
+    <button class="orbit-next"><span class="show-for-sr">Next Slide</span>&#9654;&#xFE0E;</button>
+    <li class="is-active orbit-slide">
+      <%= image_tag 'dragon2.png', class: 'orbit-image', style: 'align-items: center center' %>
+    </li>
+    <li class="orbit-slide">
+      <%= image_tag 'game.png', class: 'orbit-image', style: 'align-items: center center' %>
+    </li>
+    <li class="orbit-slide">
+      <%= image_tag 'rpg.png', class: 'orbit-image', style: 'align-items: center center' %>
+    </li>
+    <li class="orbit-slide">
+      <%= image_tag 'ship.png', class: 'orbit-image', style: 'align-items: center center' %>
+    </li>
+  </ul>
+
+</div>
+
+<div id='homepage' class='large-4 columns large-offset-4 columns medium-4 columns medium-offset-4 columns'>
   Ready to Play?
 
   <div id='findgames'>
