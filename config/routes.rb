@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :notes, except: [:index]
   end
+
+  resources :map, only: [:index]
 end
