@@ -8,6 +8,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'devise'
 gem 'foundation-rails'
+gem 'httpclient'
+gem 'json'
+gem 'geocoder'
 
 group :test do
   gem 'coveralls', require: false

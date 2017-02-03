@@ -23,6 +23,17 @@ class GamesController < ApplicationController
   def create
     if user_signed_in?
       @game = Game.create(game_params)
+      require_relative 'httprequest.rb'
+      results = Httprequest.call(@game.location)
+        if results[2] == 'ZERO_RESULTS'
+          @lat = nil
+          @lng = nil
+        else
+          @lat = results[0]
+          @lng = results[1]
+        end
+      @game.lat = @lat
+      @game.lng = @lng
 
       if @game.save
         flash[:notice] = 'Thank you for adding this listing to our database!'
@@ -54,6 +65,17 @@ class GamesController < ApplicationController
   def update
     @game = Game.find(params[:id])
     @game.update_attributes(game_params)
+    require_relative 'httprequest.rb'
+    results = Httprequest.call(@game.location)
+      if results[2] == 'ZERO_RESULTS'
+        @lat = nil
+        @lng = nil
+      else
+        @lat = results[0]
+        @lng = results[1]
+      end
+    @game.lat = @lat
+    @game.lng = @lng
 
     if @game.save
       flash[:notice] = "Thank you for editing this listing!"
