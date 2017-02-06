@@ -28,8 +28,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  font-family: 'Lobster', cursive;
   font-size: 20px;
+  font-family: 'Sahitya', serif;
 }
 
 #universal {
@@ -38,9 +38,10 @@ body {
 
 #flash {
   text-align: center;
-  background-color: rgba(143, 0, 255, 0.5);
+  background-color: rgba(143, 0, 255, 0.8);
   padding-bottom: 0;
   margin-bottom: 0;
+  color: #ffffff;
 }
 
 #background {
@@ -49,7 +50,8 @@ body {
 }
 
 .title-bar {
-  background-color: #66c1d1;
+  background-color: #63d1e4;
+  font-family: 'Lobster', cursive;
 }
 
 a {
@@ -58,8 +60,9 @@ a {
 
 #homepage {
   position: absolute;
-  top: 75%;
+  top: 70%;
   left: 0;
+  border-radius: 25px;
   font-size: 30px;
   text-align: center;
   font-family: 'Merienda', cursive;
@@ -93,7 +96,7 @@ a {
 	background:-webkit-linear-gradient(top, #d1d1d1 0%, #ececec 100%);
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
   font-family: 'Lobster', cursive;
 }
 
@@ -124,11 +127,6 @@ hr {
   padding-bottom: 1%;
 }
 
-#gamepage {
-  font-family: serif;
-  font-size: 16px;
-}
-
 #special {
   font-size: 14px;
   background: #ececec;
@@ -143,4 +141,8 @@ hr {
 	border:1px solid #a7a7a7;
 	box-shadow: 0px 2px 1px white inset, 0px -2px 8px white, 0px 2px 5px rgba(0, 0, 0, 0.1), 0px 8px 10px rgba(0, 0, 0, 0.1);
 	-webkit-transition: box-shadow 0.5s;
+}
+
+h5 {
+  margin: 0;
 }
