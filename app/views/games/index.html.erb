@@ -1,4 +1,5 @@
 <div id='background' class='large-offset-1 columns medium-offset-1 columns small-offset-1 columns large-10 columns medium-10 columns small-10 columns'>
+  <div class='text-center'><h2>All Games, listed by most recently created</h2></div>
   <% @games.each do |game| %>
     <p>
       <u><%= link_to game.name, game_path(game) %></u>:

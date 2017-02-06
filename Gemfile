@@ -11,6 +11,10 @@ gem 'foundation-rails'
 gem 'httpclient'
 gem 'json'
 gem 'geocoder'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem 'coffee-rails'
+gem 'dotenv-rails'
 
 group :test do
   gem 'coveralls', require: false
@@ -22,7 +26,6 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'web-console', '>= 3.3.0'
-  gem 'dotenv'
 end
 
 group :development, :test do
