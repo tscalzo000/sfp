@@ -24,16 +24,12 @@ class GamesController < ApplicationController
     if user_signed_in?
       @game = Game.create(game_params)
       require_relative 'httprequest.rb'
-      results = Httprequest.call(@game.location)
-        if results[2] == 'ZERO_RESULTS'
-          @lat = nil
-          @lng = nil
-        else
-          @lat = results[0]
-          @lng = results[1]
-        end
-      @game.lat = @lat
-      @game.lng = @lng
+      if @game.location.include?(' ') && !@game.location.include?('.')
+        require_relative 'httprequest.rb'
+        results = Httprequest.call(@game.location)
+        @game.lat = results[0]
+        @game.lng = results[1]
+      end
 
       if @game.save
         flash[:notice] = 'Thank you for adding this listing to our database!'
