@@ -1,7 +1,7 @@
 <div id='background' class='small-12 columns medium-8 columns float-left'>
   <h1><%= @user.username %>'s Profile Page:</h1>
 
-  <h2>Games:</h2>
+  <h2>Your Games:</h2>
     <% @user.signups.each do |signup| %>
       <p>
         <%= link_to signup.game.name, game_path(signup.game) %>
@@ -12,7 +12,10 @@
     <% end %>
     <hr />
 
-  <h2>Requests:</h2>
+  <h2>Your Requests:</h2>
+    <% if @user.requests == [] %>
+      No requests made.
+    <% end %>
     <% @user.requests.each do |request| %>
       <p>
         <div class='small-2 columns'><%= link_to request.game.name, game_path(request.game) %></div>
@@ -22,8 +25,9 @@
     <hr />
 
   <h2>Resources:</h2>
+  ---------------
     <h3>Notes:</h3>
       <% @user.notes.order(game_id: :asc).each do |note| %>
-        <p><%= note.game.name %> - <%= link_to note.title, edit_user_note_path(note) %></p>
+        <p><%= note.game.name %>: '<%= link_to note.title, edit_user_note_path(note) %>' - Last updated: <%= time_ago_in_words(note.updated_at) %> ago</p>
       <% end %>
 </div>

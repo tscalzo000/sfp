@@ -2,8 +2,8 @@
   <% @games.each do |game| %>
     <p>
       <u><%= link_to game.name, game_path(game) %></u>:
-      <% if game.description.length > 125 %>
-        <%= game.description[0...125] %>...(click the game name to see more)
+      <% if game.description.length > 175 %>
+        <%= game.description[0...175] %>...(click the game name to see more)
       <% else %>
         <%= game.description %>
       <% end %>
@@ -14,7 +14,7 @@
     </p>
   <% end %>
   <div class='text-center' id='out'>
-    Oops, all out of games!
+    <h5>Oops, all out of games!</h5>
   </div>
 </div>
 

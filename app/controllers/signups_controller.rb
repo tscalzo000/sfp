@@ -24,9 +24,10 @@ class SignupsController < ApplicationController
 
   def destroy
     @signup = Signup.find(params[:id])
+    @player = @signup.user
     @game = @signup.game
     @signup.delete
-    flash[:notice] = 'Player has been removed from this game'
+    flash[:notice] = @player.username + ' has been removed from this game'
     redirect_back(fallback_location: game_path(@game))
   end
 
