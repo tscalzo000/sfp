@@ -1,0 +1,85 @@
+<div id='background'>
+  <%= form_for [@user, @charactersheet] do |f| %>
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :classtype %>
+      <%= f.text_field :classtype %>
+    </div>
+
+    <div>
+      <%= f.label :level %>
+      <%= f.number_field :level %>
+    </div>
+
+    <div>
+      <%= f.label :race %>
+      <%= f.text_field :race %>
+    </div>
+
+    <div>
+      <%= f.label :age %>
+      <%= f.text_field :age %>
+    </div>
+
+    <div>
+      <%= f.label :alignment %>
+      <%= f.text_field :alignment %>
+    </div>
+
+    <div>
+      <%= f.label :abilities %>
+      <%= f.text_area :abilities %>
+    </div>
+
+    <div>
+      <%= f.label :description %>
+      <%= f.text_area :description %>
+    </div>
+
+    <div>
+      <%= f.label :backstory %>
+      <%= f.text_area :backstory %>
+    </div>
+
+    <div>
+      <%= f.label :appearance %>
+      <%= f.text_area :appearance %>
+    </div>
+
+    <div>
+      <%= f.label :languages %>
+      <%= f.text_field :languages %>
+    </div>
+
+    <div>
+      <%= f.label :gold %>
+      <%= f.text_field :gold %>
+    </div>
+
+    <div>
+      <%= f.label :equipment %>
+      <%= f.text_area :equipment %>
+    </div>
+
+    <div>
+      <%= f.label :weapons %>
+      <%= f.text_area :weapons %>
+    </div>
+
+    <div>
+      <%= f.label :spells %>
+      <%= f.text_area :spells %>
+    </div>
+
+    <div>
+      <%= f.label :other %>
+      <%= f.text_area :other %>
+    </div>
+
+    <%= f.submit %>
+  <% end %>
+</div>

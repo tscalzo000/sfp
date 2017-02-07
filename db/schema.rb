@@ -10,10 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170202154609) do
+ActiveRecord::Schema.define(version: 20170207174831) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "charactersheets", force: :cascade do |t|
+    t.integer "user_id",     null: false
+    t.string  "name"
+    t.string  "race"
+    t.string  "age"
+    t.string  "alignment"
+    t.string  "classtype"
+    t.integer "level"
+    t.string  "abilities"
+    t.string  "description"
+    t.string  "backstory"
+    t.string  "appearance"
+    t.string  "languages"
+    t.string  "equipment"
+    t.string  "weapons"
+    t.string  "spells"
+    t.string  "gold"
+    t.string  "other"
+    t.index ["user_id"], name: "index_charactersheets_on_user_id", using: :btree
+  end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "game_id",    null: false

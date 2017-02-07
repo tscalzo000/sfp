@@ -3,12 +3,11 @@
 
   <h2>Your Games:</h2>
     <% @user.signups.each do |signup| %>
-      <p>
         <%= link_to signup.game.name, game_path(signup.game) %>
           <% if signup.game.dm_id == @user.id %>
             (DM)
           <% end %>
-      </p>
+      <br />
     <% end %>
     <hr />
 
@@ -31,6 +30,24 @@
       No notes created.
     <% end %>
       <% @user.notes.order(game_id: :asc).each do |note| %>
-        <p><%= note.game.name %>: '<%= link_to note.title, edit_user_note_path(note) %>' - Last updated: <%= time_ago_in_words(note.updated_at) %> ago</p>
+        <%= note.game.name %>: '<%= link_to note.title, edit_user_note_path(note) %>' - Last updated: <%= time_ago_in_words(note.updated_at) %> ago<br />
+      <% end %>
+
+    <h3>Characters:</h3>
+    <% if @user.charactersheets == [] %>
+      No characters created.
+    <% end %>
+      <% @user.charactersheets.order(name: :asc).each do |sheet| %>
+        <%= link_to sheet.name, user_charactersheet_path(@user, sheet) %>: <%= sheet.race %> <%= sheet.classtype %><br />
       <% end %>
 </div>
+
+<div class='medium-4 columns float-right'>
+  <div id='background' class='medium-11 columns float-right'>
+    <iframe src="http://a.teall.info/dice/" width="100%" height="450">
+      <p>Your browser does not support iframes.</p>
+    </iframe>
+  <%= button_to 'Create New Game', new_game_path, method: :get, id: 'button' %>
+  <%= button_to 'Create New Note', new_user_note_path(@user), method: :get, id: 'button' %>
+  <%= button_to 'Create New Character', new_user_charactersheet_path(@user), method: :get, id: 'button' %>
+  </div></div>
