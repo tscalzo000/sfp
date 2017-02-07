@@ -7,4 +7,5 @@ class User < ApplicationRecord
   has_many :requests
   has_many :comments
   has_many :notes
+  has_many :charactersheets
 end

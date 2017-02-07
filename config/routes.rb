@@ -12,6 +12,12 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     resources :notes, except: [:index]
+    resources :charactersheets, except: [:index]
+    namespace :api do
+      namespace :v1 do
+        resources :charactersheets, only: [:show]
+      end
+    end
   end
 
   resources :map, only: [:index]
@@ -19,4 +25,6 @@ Rails.application.routes.draw do
   resources :search, only: [:index] do
     get :advanced, on: :collection
   end
+
+
 end
