@@ -1,0 +1,42 @@
+<div id='background'>
+  <div class='medium-12 columns'>
+    <div class='medium-10 columns medium-offset-1 columns'>
+      <p>
+        <%= form_tag(advanced_search_index_path, :method => "get") do %>
+          <div class='medium-12 columns'><%= text_field_tag :name, params[:name], placeholder: "Search Game Listings By Name" %></div>
+          <div class='medium-6 columns'><%= text_field_tag :type, params[:type], placeholder: "Search Game Listings By Game Type" %></div>
+          <div class='medium-6 columns'><%= text_field_tag :day, params[:day], placeholder: "Search Game Listings By Weekday" %></div>
+          <div class='medium-6 columns'><%= text_field_tag :freq, params[:freq], placeholder: "Search Game Listings By Frequency" %></div>
+          <div class='medium-6 columns'><%= text_field_tag :dm, params[:dm], placeholder: "Search Game Listings By DM Name (Exact matches only)" %></div>
+          <div class='medium-4 medium-offset-4 columns float-left' style='padding-bottom: 1%;'><%= submit_tag "Search", id: 'button'%></div>
+        <% end %>
+      </p>
+    </div>
+  </div><div style='color: transparent;'>.</div>
+
+  <% if @name || @type || @day || @dm %>
+    <% @games.each do |game| %>
+      <p>
+        <u><%= link_to game.name, game_path(game) %></u>:
+        <% if game.description.length > 175 %>
+          <%= game.description[0...175] %>...(click the game name to see more)
+        <% else %>
+          <%= game.description %>
+        <% end %>
+        <br />What: <%= game.gametype %>
+        <br />Where: <%= game.location %> // When: <%= game.frequency %>, <%= game.day %>s at <%= DateTime.parse(game.time).strftime("%l:%M%p") %>
+        // Players: <%= game.playernum %>
+        <hr />
+      </p>
+    <% end %>
+    <% if @games != [] %>
+      <div class='text-center' id='out'>
+        <h5>Oops, all out of games!</h5>
+      </div>
+    <% else %>
+      <div class='text-center'>
+        <h5>There are no games that match your search criteria</h5>
+      </div>
+    <% end %>
+  <% end %>
+</div>

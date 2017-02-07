@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :map, only: [:index]
+
+  resources :search, only: [:index] do
+    get :advanced, on: :collection
+  end
 end

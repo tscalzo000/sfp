@@ -1,0 +1,39 @@
+<div class='medium-12 columns'>
+  <div class='medium-8 columns medium-offset-2 columns'>
+    <p>
+      <%= form_tag(search_index_path, :method => "get") do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Search Game Listings By Name" %>
+        <div class='text-center medium-2 medium-offset-5 columns float-left' style='padding-bottom: 1%;'><%= submit_tag "Search", id: 'button'%></div>
+        <div class='text-center medium-2 medium-offset-5 columns float-left'><%= link_to 'Advanced Search', advanced_search_index_path, method: :get, id: 'special'%> </div>
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<% if @search %>
+  <div id='background'>
+    <% @games.each do |game| %>
+      <p>
+        <u><%= link_to game.name, game_path(game) %></u>:
+        <% if game.description.length > 175 %>
+          <%= game.description[0...175] %>...(click the game name to see more)
+        <% else %>
+          <%= game.description %>
+        <% end %>
+        <br />What: <%= game.gametype %>
+        <br />Where: <%= game.location %> // When: <%= game.frequency %>, <%= game.day %>s at <%= DateTime.parse(game.time).strftime("%l:%M%p") %>
+        // Players: <%= game.playernum %>
+        <hr />
+      </p>
+    <% end %>
+    <% if @games != [] %>
+      <div class='text-center' id='out'>
+        <h5>Oops, all out of games!</h5>
+      </div>
+    <% else %>
+      <div class='text-center'>
+        <h5>There are no games that match your search criteria</h5>
+      </div>
+    <% end %>
+  </div>
+<% end %>

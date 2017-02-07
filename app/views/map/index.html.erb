@@ -4,7 +4,7 @@
 
 <div id = 'background' class='small-12 columns medium-8 columns large-8 columns'>
   <div id="map" style='width: 100%; height: 400px;'></div>
-  Map centered on your location.
+  Map centered on your location if geolocation is enabled and secure origin.
 </div>
 <div id = 'background' class='small-12 columns medium-4 columns large-4 columns'>
   <h3>Unlisted or Online Games:</h3>
@@ -17,7 +17,7 @@
     <h4>Don't See the Game You Want?</h4>
   </div>
   <div class='medium-8 columns medium-offset-2 columns float-left'>
-    <%= button_to 'Search Games', root_path, method: :get, id: 'button' %>
+    <%= button_to 'Search Games', search_index_path, method: :get, id: 'button' %>
   </div><div class='medium-8 columns medium-offset-2 columns float-left'>
     <%= button_to 'See All Games', games_path, method: :get, id: 'button' %>
   </div><div class='medium-8 columns medium-offset-2 columns float-left'>
