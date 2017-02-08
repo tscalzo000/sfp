@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170207174831) do
+ActiveRecord::Schema.define(version: 20170208185828) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,13 @@ ActiveRecord::Schema.define(version: 20170207174831) do
     t.string  "gold"
     t.string  "other"
     t.index ["user_id"], name: "index_charactersheets_on_user_id", using: :btree
+  end
+
+  create_table "charviews", force: :cascade do |t|
+    t.integer "charactersheet_id"
+    t.integer "user_id"
+    t.index ["charactersheet_id"], name: "index_charviews_on_charactersheet_id", using: :btree
+    t.index ["user_id"], name: "index_charviews_on_user_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|

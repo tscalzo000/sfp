@@ -17,7 +17,7 @@
     <% end %>
     <% @user.requests.each do |request| %>
       <p>
-        <div class='small-2 columns'><%= link_to request.game.name, game_path(request.game) %></div>
+        <div class='small-9 columns'><%= link_to request.game.name, game_path(request.game) %></div>
         <%= button_to 'Cancel Request', game_request_path(request.game, request), method: :delete, id: 'special' %>
       </p>
     <% end %>
@@ -44,10 +44,23 @@
 
 <div class='medium-4 columns float-right'>
   <div id='background' class='medium-11 columns float-right'>
+
     <iframe src="http://a.teall.info/dice/" width="100%" height="450">
       <p>Your browser does not support iframes.</p>
     </iframe>
-  <%= button_to 'Create New Game', new_game_path, method: :get, id: 'button' %>
-  <%= button_to 'Create New Note', new_user_note_path(@user), method: :get, id: 'button' %>
-  <%= button_to 'Create New Character', new_user_charactersheet_path(@user), method: :get, id: 'button' %>
-  </div></div>
+
+    <%= button_to 'Create New Game', new_game_path, method: :get, id: 'button' %>
+    <%= button_to 'Create New Note', new_user_note_path(@user), method: :get, id: 'button' %>
+    <%= button_to 'Create New Character', new_user_charactersheet_path(@user), method: :get, id: 'button' %>
+    <%= button_to 'Create New Shared View', new_charview_path(@charview), method: :get, id: 'button' %>
+
+    <h3>Your Shared Views:</h3>
+    <% if @views == [] %>
+      No shared views yet!
+    <% end %>
+    <% @views.each do |view| %>
+      <%= view.charactersheet.name %>: Able to be viewed by <%= view.user.username %><br />
+      <%= button_to 'Delete Shared View', charview_path(view), method: :delete, id: 'special' %>
+    <% end %>
+  </div>
+</div>

@@ -1,13 +1,22 @@
 import React, { Component } from 'react';
+import Form from './Form';
 
 class App extends Component {
   constructor(props){
     super(props);
     this.state = {
       sheet: null,
-      user: null
+      user: null,
+      clicked: false
     };
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.handleClicked = this.handleClicked.bind(this);
+  }
+
+  handleClicked(event){
+    this.setState({
+      clicked: true
+    });
   }
 
   componentDidMount(){
@@ -20,7 +29,7 @@ class App extends Component {
     .done(data => {
       this.setState({
         sheet: data.sheet,
-        user: data.user
+        user: data.user,
       });
     });
     setTimeout(this.componentDidMount, 1000);
@@ -46,28 +55,36 @@ class App extends Component {
       var spells = this.state.sheet.spells;
       var other = this.state.sheet.other;
     }
-
-    return(
-      <div>
-        User: {user}<br/>
-        Character Name: {name}<br/>
-        Race: {race}<br/>
-        Age: {age}<br/>
-        Alignment: {alignment}<br/>
-        Class: {classtype}<br/>
-        Level: {level}<br/>
-        Abilities: {abilities}<br/>
-        Description: {description}<br/>
-        Backstory: {backstory}<br/>
-        Appearance: {appearance}<br/>
-        Languages: {languages}<br/>
-        Gold: {gold}<br/>
-        Equipment: {equipment}<br/>
-        Weapons: {weapons}<br/>
-        Spells: {spells}<br/>
-        Other: {other}<br/>
-      </div>
-    );
+    if (this.state.clicked === false) {
+      return(
+        <div>
+          <button id='special' onClick={event => {event.preventDefault(), this.handleClicked();}}>Edit</button><br/>
+          <b>Creator:</b> {user}<br/>
+          <b>Character Name:</b> {name}<br/>
+          <b>Race:</b> {race}<br/>
+          <b>Age:</b> {age}<br/>
+          <b>Alignment:</b> {alignment}<br/>
+          <b>Class:</b> {classtype}<br/>
+          <b>Level:</b> {level}<br/>
+          <b>Abilities:</b> {abilities}<br/>
+          <b>Description:</b> {description}<br/>
+          <b>Backstory:</b> {backstory}<br/>
+          <b>Appearance:</b> {appearance}<br/>
+          <b>Languages:</b> {languages}<br/>
+          <b>Gold:</b> {gold}<br/>
+          <b>Equipment:</b> {equipment}<br/>
+          <b>Weapons:</b> {weapons}<br/>
+          <b>Spells:</b> {spells}<br/>
+          <b>Other:</b> {other}<br/>
+        </div>
+      );
+    } else {
+      return(
+        <div>
+          <Form />
+        </div>
+      );
+    }
   }
 }
 

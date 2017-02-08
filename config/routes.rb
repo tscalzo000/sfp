@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'registrations/registrations'
+  }
 
   root 'homepage#index'
 
@@ -26,5 +28,5 @@ Rails.application.routes.draw do
     get :advanced, on: :collection
   end
 
-
+  resources :charviews, only: [:new, :create, :destroy]
 end

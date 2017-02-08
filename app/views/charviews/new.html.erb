@@ -1,0 +1,23 @@
+<div id = 'background'>
+  <h2 class='text-center'>Create a Shared View</h2>
+    <h4>What is a shared view?</h4>
+    A shared view allows another player or your game/dungeon master to see your charactersheet. This shared view can be deleted at any time.
+    <hr />
+  <%= form_for @charview do |f|  %>
+    <div class='medium-6 columns'>
+      <div class='medium-11 columns float-left'>
+        <%= f.label :charactersheet %>
+        <%= f.select :charactersheet, @chars %>
+      </div>
+    </div>
+
+    <div class='medium-6 columns'>
+      <div class='medium-11 columns float-left'>
+        <%= f.label :user, value: 'User: Exact match only' %>
+        <%= f.text_field :user %>
+      </div>
+    </div>
+
+    <%= f.submit(value='Create Shared View', id: 'special') %>
+  <% end %>
+</div>
