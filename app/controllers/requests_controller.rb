@@ -18,7 +18,7 @@ class RequestsController < ApplicationController
     @request = Request.find(params[:id])
     @game = @request.game
     @request.delete
-    flash[:alert] = "You have deleted your request successfully"
+    flash[:alert] = "You have deleted the request successfully"
     redirect_to game_path(@game)
   end
 

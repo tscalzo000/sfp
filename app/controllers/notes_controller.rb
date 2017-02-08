@@ -1,9 +1,15 @@
 class NotesController < ApplicationController
   def new
-    @note = Note.new
-    @games = []
-    current_user.games.each do |game|
-      @games << game.name
+    @user = current_user
+    if @user.games == []
+      flash[:notice] = 'You need to join a game in order to create notes'
+      redirect_back(fallback_location: user_path(@user))
+    else
+      @note = Note.new
+      @games = []
+      current_user.games.each do |game|
+        @games << game.name
+      end
     end
   end
 
@@ -32,6 +38,18 @@ class NotesController < ApplicationController
 
     if @note.save
       flash[:notice] = 'Note saved'
+    else
+      flash[:notice] = 'Error'
+    end
+    redirect_to game_path(@game)
+  end
+
+  def destroy
+    @note = Note.find(params[:id])
+    @game = @note.game
+
+    if @note.delete
+      flash[:notice] = 'Note deleted'
     else
       flash[:notice] = 'Error'
     end

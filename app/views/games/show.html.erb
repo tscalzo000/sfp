@@ -42,13 +42,17 @@
           <% if current_user == signup.user %>
             <div class='small-5 columns'><%= button_to 'Leave Game', game_signup_path(@game, signup), method: :delete, id: 'button' %></div>
           <% elsif current_user.id == @game.dm_id %>
-            <div class='small-5 columns'><%= button_to 'Remove Player from Game', game_signup_path(@game, signup), method: :delete, id: 'button' %></div>
+            <div class='small-5 columns'><%= button_to 'Remove Player', game_signup_path(@game, signup), method: :delete, id: 'button' %></div>
           <% end %>
       </div>
     <% end %>
   </p>
   <p>
     <% if (Signup.where(user: current_user, game: @game) != []) %>
+      <h3>Dice Roller:</h3>
+      <iframe src="http://a.teall.info/dice/" width="100%" height="450">
+        <p>Your browser does not support iframes.</p>
+      </iframe>
       <h3>Comments:</h3>
       <% @game.comments.each do |comment| %>
       <hr />
@@ -76,15 +80,15 @@
   </p>
 </div>
 
-<div id='background' class='small-12 columns medium-3 columns large-3 columns float-right'>
-  <% if current_user.id == @game.dm_id %>
-    <h3>Tracks:</h3>
-    <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/139904718&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
-  <% end %>
+<div class='small-12 columns medium-4 columns large-4 columns float-right'>
+  <div id='background' class='small-12 columns medium-11 columns float-right'>
+    <% if current_user.id == @game.dm_id %>
+      <h3>Tracks:</h3>
+      <iframe width="100%" height="450" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/175237274&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    <% end %>
 
-  <% if current_user.id == @game.dm_id %>
-    <h3>Requests:</h3>
-    <p>
+    <% if current_user.id == @game.dm_id %>
+      <h3>Requests:</h3>
       <% if @game.requests == [] %>
         No new requests.
       <% end %>
@@ -95,55 +99,56 @@
           <%= f.hidden_field :user_id, value: request.user.id %>
           <%= f.submit(value="Add Player", id: 'special') %>
         <% end %>
+        <%= button_to 'Deny', game_request_path(@game, request), method: :delete, id: 'special' %>
       <% end %>
-    </p>
-  <% end %>
-
-  <% if current_user.id == @game.dm_id %>
-  <hr />
-    <h3>Add Player to Game Manually:</h3>
-      <%= form_for [@game, @signup] do |f| %>
-      <%= f.label :user, value: 'Username of Player:' %>
-      <%= f.text_field :user %>
-      <%= f.submit(value='Add Player', id: 'special') %>
-      <% end %>
-  <% end %>
-
-  <% if current_user.id == @game.dm_id %>
-  <hr />
-    <h3>Change DM:</h3>
-      <%= form_for [@game] do |f| %>
-      <%= f.label :dm_id, value: 'ID of Player:' %>
-      <%= f.text_field :dm_id %>
-      <%= f.submit(value='Transfer DM Privileges', id: 'special') %>
-      <% end %>
-  <% end %>
-
-  <% if current_user.id == @game.dm_id %>
-  <hr />
-  <% end %>
-
-  <h3>Your Games:</h3>
-    <% if current_user.signups == [] %>
-      You have no games!
     <% end %>
-    <% current_user.signups.each do |signup| %>
-      <p>
-        <%= link_to signup.game.name, game_path(signup.game) %>: Role -
-        <% if signup.game.dm_id == current_user.id %>
-          DM
-        <% else %>
-          Player
-        <% end %>
-      </p>
-    <% end %>
+
+    <% if current_user.id == @game.dm_id %>
     <hr />
-  <h3>Your Notes:</h3>
-    <% if current_user.notes.where(game: @game) == [] %>
-      You have no notes for this game.
+      <h3>Add Player to Game Manually:</h3>
+        <%= form_for [@game, @signup] do |f| %>
+        <%= f.label :user, value: 'Username of Player:' %>
+        <%= f.text_field :user %>
+        <%= f.submit(value='Add Player', id: 'special') %>
+        <% end %>
     <% end %>
-    <% current_user.notes.where(game: @game).each do |note| %>
-      <p><%= link_to note.title, edit_user_note_path(current_user, note)  %> - Last updated: <%= time_ago_in_words(note.updated_at) %> ago</p>
+
+    <% if current_user.id == @game.dm_id %>
+    <hr />
+      <h3>Change DM:</h3>
+        <%= form_for [@game] do |f| %>
+        <%= f.label :dm_id, value: 'ID of Player:' %>
+        <%= f.text_field :dm_id %>
+        <%= f.submit(value='Transfer DM Privileges', id: 'special') %>
+        <% end %>
     <% end %>
-    <%= button_to 'Create New Note', new_user_note_path(current_user, @note), method: :get, id: 'special' %>
+
+    <% if current_user.id == @game.dm_id %>
+    <hr />
+    <% end %>
+
+    <h3>Your Games:</h3>
+      <% if current_user.signups == [] %>
+        You have no games!
+      <% end %>
+      <% current_user.signups.each do |signup| %>
+        <p>
+          <%= link_to signup.game.name, game_path(signup.game) %>: Role -
+          <% if signup.game.dm_id == current_user.id %>
+            DM
+          <% else %>
+            Player
+          <% end %>
+        </p>
+      <% end %>
+      <hr />
+    <h3>Your Notes:</h3>
+      <% if current_user.notes.where(game: @game) == [] %>
+        You have no notes for this game.
+      <% end %>
+      <% current_user.notes.where(game: @game).each do |note| %>
+        <p><%= link_to note.title, edit_user_note_path(current_user, note)  %> - Last updated: <%= time_ago_in_words(note.updated_at) %> ago</p>
+      <% end %>
+      <%= button_to 'Create New Note', new_user_note_path(current_user, @note), method: :get, id: 'special' %>
+  </div>
 </div>

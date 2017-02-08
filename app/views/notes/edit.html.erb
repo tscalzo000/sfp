@@ -11,4 +11,5 @@
     <%= f.submit id: 'special' %>
 
   <% end %>
+  <%= button_to 'Delete Note', user_note_path(@note), method: :delete, id: 'special'  %>
 </div>
