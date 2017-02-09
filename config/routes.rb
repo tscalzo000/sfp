@@ -29,4 +29,8 @@ Rails.application.routes.draw do
   end
 
   resources :charviews, only: [:new, :create, :destroy]
+
+  resources :conversations do
+    resources :messages
+  end
 end

@@ -2,6 +2,14 @@
   <button class='menu-icon' type='button' data-toggle='example-menu'></button>
   <div class='title-bar-title'>Menu</div>
 </div>
+<% if user_signed_in? %>
+  <% @unread = [] %>
+  <% @convos = Conversation.where(sender_id: current_user.id) %>
+  <% @convos += Conversation.where(recipient_id: current_user.id) %>
+  <% @convos.each do |convo| %>
+    <% @unread += convo.messages.where(read: false).where.not(user_id: current_user.id) %>
+  <% end %>
+<% end %>
 
 <div id = 'title' data-sticky-container>
   <div class='title-bar' data-sticky data-options='marginTop:0;' style='width:100%'>
@@ -16,8 +24,12 @@
         <ul class='menu'>
           <% if user_signed_in? %>
             <li><a href='/users/<%= current_user.id %>'>Logged in as <strong><%= current_user.username %></strong></a></li>
-            <li><a href='/users/edit'>Edit profile</a></li>
             <li><a href='/users/sign_out' data-method='delete'>Logout</a></li>
+            <% if @unread != [] %>
+              <li><a href='/conversations'><i class="fa fa-comments" id='unread' aria-hidden="true"></i></a></li>
+            <% else %>
+              <li><a href='/conversations'><i class="fa fa-comments" aria-hidden="true"></i></a></li>
+            <% end %>
             <li><a href='/search'><i class="fa fa-search"></i></a></li>
           <% else %>
             <li><a href='/users/sign_up'>Sign up</a></li>

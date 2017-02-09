@@ -146,3 +146,11 @@ hr {
 h5 {
   margin: 0;
 }
+
+#unread {
+  color: #f11414;
+}
+
+#read {
+  color: #1fcd2b;
+}

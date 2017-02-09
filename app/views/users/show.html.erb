@@ -1,5 +1,12 @@
 <div id='background' class='small-12 columns medium-8 columns float-left'>
-  <h1><%= @user.username %>'s Profile Page:</h1>
+  <div class='small-12 columns'>
+    <div class='medium-9 columns'>
+      <h1><%= @user.username %>'s Profile Page:</h1>
+    </div>
+      <div class='medium-3 columns'>
+        <%= button_to 'Edit Profile', edit_user_registration_path(current_user), method: :get, id: 'button' %>
+      </div>
+  </div>
 
   <h2>Your Games:</h2>
     <% @user.signups.each do |signup| %>
