@@ -1,0 +1,31 @@
+<div id='background'>
+  <h2>Mailbox</h2>Please be considerate to other users. Your conversations cannot be erased or edited.
+  <h3>Your Conversations:</h3>
+    <% @conversations.each do |conversation| %>
+      <p>
+        <% if conversation.messages.where(read: false).where.not(user_id: current_user.id) != [] %>
+          <i class="fa fa-check-circle" id='unread' aria-hidden="true"></i>
+        <% else %>
+          <i class="fa fa-check-circle-o" id='read' aria-hidden="true"></i>
+        <% end %>
+        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to recipient.username, conversation_messages_path(conversation)%>
+          (Last Message: <%= conversation.messages.last.message_time %>)
+        <% end %>
+      </p>
+    <% end %>
+
+  <h3>New Message:</h3>
+
+  <%= form_for @conversation do |f| %>
+    <%= f.hidden_field :sender_id, value: current_user.id%>
+    <%= f.select :recipient_id, @list  %>
+    <%= f.submit(value='Send Message', id:'special') %>
+  <% end %>
+
+</div>
