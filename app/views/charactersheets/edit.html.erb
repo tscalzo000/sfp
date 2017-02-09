@@ -1,0 +1,8 @@
+<div id='background'>
+  <h1>Edit Character</h1>
+
+    <%= render 'form' %>
+
+  <%= button_to 'Delete Character', user_charactersheet_path(@charactersheet), method: :delete, data: { confirm: "Are you sure?" }, id: 'special' %>
+  <%= link_to 'Cancel', user_charactersheet_path(@charactersheet) %>
+</div>

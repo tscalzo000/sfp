@@ -1,7 +1,7 @@
 class Api::V1::CharactersheetsController < ApplicationController
   def show
     @charactersheet = Charactersheet.find(params[:id])
-    @user = current_user
+    @user = @charactersheet.user
 
     render json: { user: @user, sheet: @charactersheet }
     # passing in user and review through ajax call in react

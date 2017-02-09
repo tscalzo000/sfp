@@ -30,9 +30,35 @@ class CharactersheetsController < ApplicationController
 
   def show
     @sheet = Charactersheet.find(params[:id])
-    unless (user_signed_in? && (current_user == @sheet.user))
+    unless (user_signed_in? && ((current_user == @sheet.user) || ( @sheet.charviews.where(user: current_user) != [] )))
       flash[:notice] = 'You do not have permission to view this item'
       redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def edit
+    @charactersheet = Charactersheet.find(params[:id])
+    @user = @charactersheet.user
+    if user_signed_in?
+      unless current_user == @user
+        flash[:alert] = "UNAUTHORIZED"
+        redirect_back(fallback_location: root_path)
+      end
+    else
+      flash[:alert] = "UNAUTHORIZED"
+      redirect_back(fallback_location: root_path)
+    end
+  end
+
+  def update
+    @charactersheet = Charactersheet.find(params[:id])
+    @charactersheet.update_attributes(sheet_params)
+    if @charactersheet.save
+      flash[:notice] = "Thank you for editing this character!"
+      redirect_to user_charactersheet_path(@charactersheet)
+    else
+      flash[:notice] = @charactersheet.errors.full_messages.to_sentence
+      render :edit
     end
   end
 
@@ -55,7 +81,8 @@ class CharactersheetsController < ApplicationController
       :weapons,
       :spells,
       :gold,
-      :other
+      :other,
+      :url
     )
   end
 end

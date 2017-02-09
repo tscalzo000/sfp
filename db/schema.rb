@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170209144307) do
+ActiveRecord::Schema.define(version: 20170209204616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20170209144307) do
     t.string  "spells"
     t.string  "gold"
     t.string  "other"
+    t.string  "url"
     t.index ["user_id"], name: "index_charactersheets_on_user_id", using: :btree
   end
 
