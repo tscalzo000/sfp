@@ -17,7 +17,7 @@ class MessagesController < ApplicationController
       end
     end
     @message = @conversation.messages.new
-    if current_user.id == @conversation.recipient_id
+    if (current_user.id == @conversation.recipient_id)
       @user = User.find(@conversation.sender_id)
     else
       @user = User.find(@conversation.recipient_id)
