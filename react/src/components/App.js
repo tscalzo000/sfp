@@ -54,18 +54,29 @@ class App extends Component {
       var weapons = this.state.sheet.weapons;
       var spells = this.state.sheet.spells;
       var other = this.state.sheet.other;
+      if (this.state.sheet.url !== '' && this.state.sheet.url !== null) {
+        var url = this.state.sheet.url;
+      } else {
+        var url = 'https://pbs.twimg.com/profile_images/1724449330/stick_man_by_minimoko94-d2zvfn8.png';
+      }
     }
     if (this.state.clicked === false) {
       return(
         <div>
-          <button id='special' onClick={event => {event.preventDefault(), this.handleClicked();}}>Edit</button><br/>
-          <b>Creator:</b> {user}<br/>
-          <b>Character Name:</b> {name}<br/>
-          <b>Race:</b> {race}<br/>
-          <b>Age:</b> {age}<br/>
-          <b>Alignment:</b> {alignment}<br/>
-          <b>Class:</b> {classtype}<br/>
-          <b>Level:</b> {level}<br/>
+          <div className='medium-2 columns float-right'>
+            <img src={url}></img>
+            <hr/><button id='button' onClick={event => {event.preventDefault(), this.handleClicked();}}>Edit</button><br/>
+          </div>
+          <div className='medium-10 columns float-left'>
+            <b>Creator:</b> {user}<br/>
+            <b>Character Name:</b> {name}<br/>
+            <b>Race:</b> {race}<br/>
+            <b>Age:</b> {age}<br/>
+            <b>Alignment:</b> {alignment}<br/>
+            <b>Class:</b> {classtype}<br/>
+            <b>Level:</b> {level}<br/>
+          </div>
+
           <b>Abilities:</b> {abilities}<br/>
           <b>Description:</b> {description}<br/>
           <b>Backstory:</b> {backstory}<br/>
@@ -76,6 +87,7 @@ class App extends Component {
           <b>Weapons:</b> {weapons}<br/>
           <b>Spells:</b> {spells}<br/>
           <b>Other:</b> {other}<br/>
+
         </div>
       );
     } else {

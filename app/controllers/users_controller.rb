@@ -7,6 +7,7 @@ class UsersController < ApplicationController
         @views += sheet.charviews
       end
       @charview = Charview.new
+      @shared = Charview.where(user: current_user)
     else
       flash[:notice] = 'Please sign in first'
       redirect_to new_user_session_path

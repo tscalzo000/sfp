@@ -69,5 +69,12 @@
       <%= view.charactersheet.name %>: Able to be viewed by <%= view.user.username %><br />
       <%= button_to 'Delete Shared View', charview_path(view), method: :delete, id: 'special' %>
     <% end %>
+    <h3>Views Shared with You:</h3>
+    <% if @shared == [] %>
+      No shared views yet!
+    <% end %>
+    <% @shared.each do |shared| %>
+      <%= link_to shared.charactersheet.name, user_charactersheet_path(shared.charactersheet.user, shared.charactersheet) %>: Owned by: <%= shared.charactersheet.user.username %>
+    <% end %>
   </div>
 </div>
