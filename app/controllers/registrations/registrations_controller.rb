@@ -37,6 +37,9 @@ class Registrations::RegistrationsController < Devise::RegistrationsController
     @user.notes.each do |note|
       note.delete
     end
+    @user.charviews.each do |view|
+      view.delete
+    end
     super
   end
 

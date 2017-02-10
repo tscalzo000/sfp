@@ -7,7 +7,8 @@ class App extends Component {
     this.state = {
       sheet: null,
       user: null,
-      clicked: false
+      clicked: false,
+      current_user: null
     };
     this.componentDidMount = this.componentDidMount.bind(this);
     this.handleClicked = this.handleClicked.bind(this);
@@ -30,6 +31,7 @@ class App extends Component {
       this.setState({
         sheet: data.sheet,
         user: data.user,
+        current_user: data.current,
       });
     });
     setTimeout(this.componentDidMount, 1000);
@@ -59,15 +61,15 @@ class App extends Component {
       } else {
         var url = 'https://pbs.twimg.com/profile_images/1724449330/stick_man_by_minimoko94-d2zvfn8.png';
       }
+      var current_user = this.state.current_user;
     }
     if (this.state.clicked === false) {
       return(
         <div>
-          <div className='medium-2 columns float-right'>
+          <div className='medium-3 columns float-right'>
             <img src={url}></img>
-            <hr/><button id='button' onClick={event => {event.preventDefault(), this.handleClicked();}}>Edit</button><br/>
           </div>
-          <div className='medium-10 columns float-left'>
+          <div className='medium-9 columns float-left'>
             <b>Creator:</b> {user}<br/>
             <b>Character Name:</b> {name}<br/>
             <b>Race:</b> {race}<br/>
