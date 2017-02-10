@@ -80,6 +80,11 @@
       <%= f.text_area :other %>
     </div>
 
+    <div>
+      <%= f.label :url, value: 'Character Picture Link' %>
+      <%= f.text_field :url %>
+    </div>
+
     <%= f.submit(value='Create Character', id: 'special') %>
   <% end %>
 </div>
